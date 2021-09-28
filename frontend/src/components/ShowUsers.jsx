@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components';
 
-const H3 = styled.h3 `
+export const H3 = styled.h3 `
     
     color:white;
 

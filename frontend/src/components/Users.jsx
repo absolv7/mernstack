@@ -3,7 +3,7 @@ import ShowUsers from './ShowUsers';
 import axios from 'axios';
 import styled from 'styled-components';
 
-const StyledDiv = styled.div `
+export const StyledDiv = styled.div `
 
 color: white;
 background: #654ea3;
