@@ -1,15 +1,23 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
+export const StyledNav = styled.nav `
+    
+    color:whitesmoke;
+    background: #3494E6;
+    background: -webkit-linear-gradient(to right, #EC6EAD, #3494E6);
+    background: linear-gradient(to right, #EC6EAD, #3494E6);
 
+`
 
 const Navigation = () => {
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+        <StyledNav className="navbar navbar-expand-lg navbar-dark">
             <div className="container">
-                <a className="navbar-brand" href="/">
+                <Link className="navbar-brand" to="/">
                     NotesApp
-                </a>
+                </Link>
                 
                 <button
                     className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,7 +39,7 @@ const Navigation = () => {
                     </ul>
                 </div>
             </div>
-        </nav>
+        </StyledNav>
     );
 }
 

@@ -1,17 +1,54 @@
-import React, { useState } from 'react'
-import { H3 } from './ShowUsers';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
+import ShowNotes from './ShowNotes';
 import { StyledDiv } from './Users';
 
 const Notes = () => {
 
-    const [state, setState] = useState([
-            {
-                title: '',
-                content: '',
-                author: '',
-                date: Date.now
-            }
-    ])
+    const [state, setState] = useState({
+        title: '',
+        content: '',
+        author: '',
+        date: Date,
+    });
+
+    useEffect(() => {
+        getNotes();
+        
+    }, [])
+
+    const writeTitle = (event) => {
+        setState({
+            ...state,
+            title: event.target.value
+        });
+    }
+
+    const writeContent = (event) => {
+        setState({
+            ...state,
+            content: event.target.value
+        });
+    }
+
+    const writeAuthor = (event) => {
+        setState({
+            ...state,
+            author: event.target.value
+        });
+    }
+
+
+    const getNotes = async () => {
+        const response = await axios.get('http://localhost:4000/api/notes');
+        const data = response.data;
+        setState(data);
+    }
+
+    const deleteNote = async (id) => {
+        await axios.delete(`http://localhost:4000/api/notes/${id}`);
+        getNotes();
+    }
 
     return (
         <div className="container">
@@ -23,27 +60,22 @@ const Notes = () => {
                         <form>
                             <div className="form-group">
                                 <input
-                                    className="form-control"
-                                    type="text"/>
+                                    className="form-control" type="text" placeholder="Title" onChange={writeTitle}/>
+                                <br />
+                                <input
+                                    className="form-control" type="text" placeholder="Content" onChange={writeContent}/>
+                                <br />
+                                <input
+                                    className="form-control" type="text" placeholder="Author" onChange={writeAuthor}/>
                             </div>
                             <br />
-                            <button type="submit" className="btn btn-success">
+                            <button type="submit" className="btn btn-success" disabled>
                                 Save Note
                             </button>
                         </form>
                     </StyledDiv>
                 </div>
-                <div className="col-md-8">
-                    <ul className="list-group">
-                        {   state.length > 0 ?
-                            state.map((note) => (
-                            <li className="list-group-item  list-group-item-action">
-                                {`${note.title} ${note.content}`}
-                            </li>
-                        )) : (<H3>No Users</H3>)
-                        }
-                    </ul>
-                </div>
+                <ShowNotes state={state} deleteNote={deleteNote}></ShowNotes>
             </div>
         </div>
     )

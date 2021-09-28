@@ -56,9 +56,9 @@ const Users = () => {
                         <form href={ref}>
                             <div className="form-group">
                                 <input
-                                    className="form-control" 
-                                    value={username}
-                                    type="text" onChange={write}/>
+                                    className="form-control" value={username}
+                                    type="text" onChange={write}
+                                placeholder="Username"/>
                             </div>
                             <br />
                             <button onClick={submitEvent} type="submit" className="btn btn-success">

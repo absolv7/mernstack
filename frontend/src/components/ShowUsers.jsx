@@ -7,17 +7,17 @@ export const H3 = styled.h3 `
 
 `
 
-const StyledLi = styled.li `
+export const StyledLi = styled.li `
     
-    color: darkblue;
-    background: #2980B9;
-    background: -webkit-linear-gradient(to right, #FFFFFF, #6DD5FA, #2980B9);
-    background: linear-gradient(to right, #FFFFFF, #6DD5FA, #2980B9);
+    color: whitesmoke;
+    background: #3494E6;
+    background: -webkit-linear-gradient(to right, #EC6EAD, #3494E6);
+    background: linear-gradient(to right, #EC6EAD, #3494E6);
     font-size: 23px;
 
 `
 
-const Button = styled.button `
+export const Button = styled.button `
 
     float: right;
 
@@ -29,9 +29,10 @@ const ShowUsers = ({users,deleteUser}) => {
     return (
         <div className="col-md-8">
             <ul className="list-group">
+                <br />
                 {users.length > 0 ? users.map((user) => (
                     <StyledLi
-                        className="list-group-item list-group-item-action"
+                        className="list-group-item"
                         key={user._id}>
                         {user.username}
                         <Button onClick={() => deleteUser(user._id)}
@@ -39,7 +40,6 @@ const ShowUsers = ({users,deleteUser}) => {
                     </StyledLi>
                 )) : (
                     <>
-                    <br />
                     <H3>No Users</H3>
                     </>)
                 }
