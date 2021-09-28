@@ -1,7 +1,16 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import ShowUsers from './ShowUsers';
 import axios from 'axios';
+import styled from 'styled-components';
 
+const StyledDiv = styled.div `
+
+color: white;
+background: #654ea3;
+background: -webkit-linear-gradient(to right, #eaafc8, #654ea3);
+background: linear-gradient(to right, #eaafc8, #654ea3);
+
+`
 
 const Users = () => {
 
@@ -9,6 +18,9 @@ const Users = () => {
     const [username, setUsername] = useState('');
     const ref = useRef(username);
 
+    useEffect(() => {
+        getUsers();
+    }, [])
 
     const write = async (event) => {
         setUsername(event.target.value);
@@ -35,24 +47,27 @@ const Users = () => {
 
 
     return (
-        <div className="row">
-            <div className="col-md-4">
-                <div className="card card-body">
-                    <h3>Create New User</h3>
-                    <form>
-                        <div className="form-group">
-                            <input
-                                className="form-control" value={username}
-                                type="text" onChange={write}/>
-                        </div>
-                        <br />
-                        <button onClick={submitEvent} type="submit" className="btn btn-success">
-                            Save User
-                        </button>
-                    </form>
+        <div className="container">
+            <div className="row">
+                <div className="col-md-4">
+                    <StyledDiv className="card card-body">
+                        <h3>Create New User</h3>
+                        <form href={ref}>
+                            <div className="form-group">
+                                <input
+                                    className="form-control" 
+                                    value={username}
+                                    type="text" onChange={write}/>
+                            </div>
+                            <br />
+                            <button onClick={submitEvent} type="submit" className="btn btn-success">
+                                Save User
+                            </button>
+                        </form>
+                    </StyledDiv>
                 </div>
+                <ShowUsers users={users} deleteUser={deleteUser}></ShowUsers>
             </div>
-            <ShowUsers users={users} deleteUser={deleteUser}></ShowUsers>
         </div>
     )
 }

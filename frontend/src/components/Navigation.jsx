@@ -2,9 +2,10 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 
 
+
 const Navigation = () => {
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark p-3">
+        <nav className="navbar navbar-expand-lg navbar-primary bg-light">
             <div className="container">
                 <a className="navbar-brand" href="/">
                     NotesApp
