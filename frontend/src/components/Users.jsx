@@ -1,43 +1,36 @@
-import React, { useEffect, useRef, useState } from 'react'
-// import ShowUsers from './ShowUsers';
+import React, { useRef, useState } from 'react'
+import ShowUsers from './ShowUsers';
 import axios from 'axios';
 
 
 const Users = () => {
 
-    const [users, setUsers] = useState({
-        usuarios: []
-    });
+    const [users, setUsers] = useState([]);
+    const [username, setUsername] = useState('');
+    const ref = useRef(username);
 
-    const [input, setInput] = useState('');
-
-    const ref = useRef(input);
-
-    useEffect(() => {
-        getUsers();
-    }, [users.usuarios]);
 
     const write = async (event) => {
-        setInput(event.target.value);
+        setUsername(event.target.value);
     }
 
     const getUsers = async () => {
         const response = await axios.get('http://localhost:4000/api/users');
-        setUsers({
-            usuarios: response.data
-        })
+        setUsers(response.data)
     }
 
     const deleteUser = async (id) => {
         await axios.delete(`http://localhost:4000/api/users/${id}`);
+        getUsers();
     }
 
     const submitEvent = async (event) => {
         event.preventDefault();
         await axios.post('http://localhost:4000/api/users', {
-            username: input
+            username: username
         });
-        setInput('');
+        setUsername('');
+        getUsers();
     };
 
 
@@ -49,29 +42,17 @@ const Users = () => {
                     <form>
                         <div className="form-group">
                             <input
-                                onChange={write} className="form-control"
-                                value={input} type="text" href={ref}
-                            />
+                                className="form-control" value={username}
+                                type="text" onChange={write}/>
                         </div>
                         <br />
-                        <button onClick={submitEvent} type="submit" className="btn btn-info">
+                        <button onClick={submitEvent} type="submit" className="btn btn-success">
                             Save User
                         </button>
                     </form>
                 </div>
             </div>
-            <div className="col-md-8">
-                    <ul className="list-group">
-                    {users.usuarios.map((user) => (
-                        <li className="list-group-item list-group-item-action" key={user._id}>
-                            {user.username}
-                            
-                            <button onClick={()=>deleteUser(user._id)} className="btn btn-danger">x</button>
-                        </li>
-                    )
-                    )}
-                </ul>
-            </div>
+            <ShowUsers users={users} deleteUser={deleteUser}></ShowUsers>
         </div>
     )
 }
