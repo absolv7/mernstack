@@ -4,11 +4,15 @@ const User = require('../models/User');
 
 usersController.getUsers = async (request, response) => {
     
-    const users = await User.find();
-    if (users.length>0) {
+    try {
+        const users = await User.find();
         response.json(users);
     }
-    else response.json('No hay usuarios');
+    catch (error) {
+        response.status(400).json({
+            error: error
+        });
+    }
     
 };
 
