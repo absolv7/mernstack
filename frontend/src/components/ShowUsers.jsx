@@ -37,7 +37,11 @@ const ShowUsers = ({users,deleteUser}) => {
                         <Button onClick={() => deleteUser(user._id)}
                         className="btn btn-danger">x</Button>
                     </StyledLi>
-                )) : (<H3>No Users</H3>)
+                )) : (
+                    <>
+                    <br />
+                    <H3>No Users</H3>
+                    </>)
                 }
             </ul>
         </div>

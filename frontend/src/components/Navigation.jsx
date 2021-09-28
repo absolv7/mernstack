@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const Navigation = () => {
     return (
-        <nav className="navbar navbar-expand-lg navbar-primary bg-light">
+        <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
             <div className="container">
                 <a className="navbar-brand" href="/">
                     NotesApp
