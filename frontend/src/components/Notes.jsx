@@ -1,9 +1,15 @@
 import React from 'react'
 
 const Notes = () => {
+
     return (
-        <div>
-            NOTES
+        <div className="col-md-8">
+            <ul className="list-group">
+                <li>
+                    NOTES
+                </li>
+            </ul>
+            
         </div>
     )
 }

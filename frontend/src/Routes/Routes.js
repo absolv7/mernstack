@@ -10,7 +10,6 @@ const Routes = () => {
             <Route exact path="/notes" component={Notes}></Route>
         </Switch>
     )
-    
 }
 
 export default Routes;
