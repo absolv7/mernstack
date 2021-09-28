@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import ShowNotes from './ShowNotes';
-import { StyledDiv } from './Users';
+import { StyledDiv } from '../users/Users';
 
 const Notes = () => {
 

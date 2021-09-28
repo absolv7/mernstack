@@ -1,5 +1,5 @@
 import React from 'react';
-import { H3, Button } from './ShowUsers';
+import { H3, Button } from '../users/ShowUsers';
 import styled from 'styled-components';
 
 

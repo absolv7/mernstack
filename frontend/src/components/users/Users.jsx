@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import ShowUsers from './ShowUsers';
 import axios from 'axios';
 import styled from 'styled-components';
+import Form from './UserForm';
 
 export const StyledDiv = styled.div `
 
@@ -51,21 +52,9 @@ const Users = () => {
             <div className="row">
                 <div className="col-md-4">
                 <br />
-                    <StyledDiv className="card card-body">
-                        <h3>Create New User</h3>
-                        <form href={ref}>
-                            <div className="form-group">
-                                <input
-                                    className="form-control" value={username}
-                                    type="text" onChange={write}
-                                placeholder="Username"/>
-                            </div>
-                            <br />
-                            <button onClick={submitEvent} type="submit" className="btn btn-success">
-                                Save User
-                            </button>
-                        </form>
-                    </StyledDiv>
+                    <Form ref={ref} write={write} username={username}
+                        submitEvent={submitEvent}>
+                    </Form>
                 </div>
                 <ShowUsers users={users} deleteUser={deleteUser}></ShowUsers>
             </div>

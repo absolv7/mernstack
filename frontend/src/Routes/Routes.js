@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, Switch } from "react-router"
-import Notes from '../components/Notes';
-import Users from '../components/Users';
+import Notes from '../components/notes/Notes';
+import Users from '../components/users/Users';
 
 const Routes = () => {
     return (
