@@ -4,9 +4,7 @@ const URI = process.env.MONGOOSE_URI
     ? process.env.MONGOOSE_URI
     : 'mongodb://localhost/merndatabase';
 
-mongoose.connect(URI, {
-    
-});
+mongoose.connect(URI, {});
 
 const connection = mongoose.connection;
 
