@@ -14,15 +14,17 @@ const StyledLi = styled.li `
 
 const ShowNotes = ({state,deleteNote}) => {
     return (
-        <div className="col-md-8">
+        <div className="col">
                     <ul className="list-group">
                         <br />
                         {state.length > 0 ?
                             state.map((note) => (
-                                <StyledLi className="list-group-item  list-group-item-action" key={note._id}>
-                                    {`${note.title} ${note.content}
-                                    ${note.author}`}
-                                    <Button onClick={()=>deleteNote(note._id)} className="btn btn-warning">x</Button>
+                                <StyledLi className="list-group-item"
+                                    key={note._id}>
+                                    <Button onClick={()=>deleteNote(note._id)} className="btn btn-danger">x</Button>
+                                    <h1>{`Titulo: ${note.title}`}</h1>
+                                    <h2>{`Descripcion: ${note.content}`}</h2>
+                                    <h4>{`Autor: ${note.author}`}</h4>
                                 </StyledLi>
                             )) : (
                         <>

@@ -39,32 +39,10 @@ const Notes = () => {
     return (
         <div className="container">
             <div className="row">
-                <div className="col-md-4">
-                <br />
-                    <StyledDiv className="card card-body">
-                        <h3>Create New Note</h3>
-                        <form>
-                            <div className="form-group">
-                                <input
-                                    className="form-control" type="text" placeholder="Title" onChange={write}
-                                    name="title" />
-                                <br />
-                                <input
-                                    className="form-control" type="text" placeholder="Content" onChange={write}
-                                    name="content"/>
-                                <br />
-                                <input
-                                    className="form-control" type="text" placeholder="Author" onChange={write}
-                                    name="author" />
-                            </div>
-                            <br />
-                            <button type="submit" className="btn btn-success" disabled>
-                                Save Note
-                            </button>
-                        </form>
-                    </StyledDiv>
+                <div className="col-md-7">
+                    <br />
+                    <ShowNotes state={state} deleteNote={deleteNote}></ShowNotes>
                 </div>
-                <ShowNotes state={state} deleteNote={deleteNote}></ShowNotes>
             </div>
         </div>
     )

@@ -20,7 +20,12 @@ const CreateNote = () => {
     const getUsers = async () => {
         const response = await axios.get('http://localhost:4000/api/users');
         const users = response.data.map((user) => user.username);
-        setState({ usuarios: users });
+        setState({
+            ...state,
+            usuarios: users,
+            userSelected: response.data[0].username
+        });
+        console.log(response.data[0].username);
     }
 
     const submitEvent = async (event) => {
@@ -29,10 +34,9 @@ const CreateNote = () => {
             title: state.title,
             content: state.content,
             date: state.date,
-            autor: state.userSelected
+            author: state.userSelected
         }
         const res = await axios.post('http://localhost:4000/api/notes', newNote );
-        console.log(res);
     }
 
     const inputChange = (event) => {
