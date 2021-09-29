@@ -1,7 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import ShowNotes from './ShowNotes';
-import { StyledDiv } from '../users/Users';
 
 const Notes = () => {
 
@@ -16,14 +15,6 @@ const Notes = () => {
         getNotes();
         
     }, [])
-
-    const write = (event) => {
-        setState({
-            ...state,
-            [event.target.name]: event.target.value
-        });
-    }
-
 
     const getNotes = async () => {
         const response = await axios.get('http://localhost:4000/api/notes');

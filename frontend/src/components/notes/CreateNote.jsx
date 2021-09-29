@@ -3,6 +3,7 @@ import axios from 'axios';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
+
 const CreateNote = () => {
 
     const [state, setState] = useState({
@@ -15,17 +16,24 @@ const CreateNote = () => {
 
     useEffect(() => {
         getUsers();
-    }, [])
+    },[])
 
     const getUsers = async () => {
-        const response = await axios.get('http://localhost:4000/api/users');
-        const users = response.data.map((user) => user.username);
-        setState({
-            ...state,
-            usuarios: users,
-            userSelected: response.data[0].username
-        });
-        console.log(response.data[0].username);
+        try {
+            const response = await axios.get('http://localhost:4000/api/users');
+            if (response.data.length > 0) {
+                const users = response.data.map((user) => user.username);
+                setState({
+                    ...state,
+                    usuarios: users,
+                    userSelected: response.data[0].username
+                });
+            } else return;
+            
+        } catch (error) {
+            console.warn(error);
+        }
+        
     }
 
     const submitEvent = async (event) => {
@@ -36,7 +44,13 @@ const CreateNote = () => {
             date: state.date,
             author: state.userSelected
         }
-        const res = await axios.post('http://localhost:4000/api/notes', newNote );
+        await axios.post('http://localhost:4000/api/notes', newNote);
+        setState({
+            ...state,
+            title: '',
+            content:''
+        })
+        window.location.href = '/notes'
     }
 
     const inputChange = (event) => {
@@ -61,7 +75,7 @@ const CreateNote = () => {
             <div className="col-md-4">
                 <div className="card card-body">
                     <h4>Create a note</h4>
-                    <input className="form-control" type="text" name="title" placeholder="Note" onChange={inputChange}/>
+                    <input className="form-control" type="text" name="title" placeholder="Title" onChange={inputChange}/>
 
                     <br />
                     <div className="form-group">
@@ -70,17 +84,18 @@ const CreateNote = () => {
                         </textarea>
                     </div>
                     <br />
-                    {/* SELECT USER */}
                     <div className="form-group">
-                        <select className="form-control" name="userSelected"
-                            onChange={inputChange}>
-                            {
-                                state.usuarios.map((usuario) => (
+                        <select defaultValue="Select" className="form-control" name="userSelected" onChange={inputChange} required>
+                            {state.usuarios.map((usuario) => (
+                                <>
+                                    <option value="" selected disabled
+                                        hidden key={usuario._id}>
+                                        Seleccionar usuario
+                                    </option>
                                     <option value={usuario} key={usuario._id}>
                                         {usuario}
                                     </option>
-                                ))
-                            }
+                                </>))}
                         </select>
                     </div>
                     <br />
