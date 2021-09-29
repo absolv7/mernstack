@@ -16,7 +16,7 @@ notesController.createNote = async (request, response) => {
         author
     });
     await note.save();
-    response.json('New Note added');
+    response.json('Note added');
 };
 
 notesController.getNote = async (request, response) => {
@@ -26,7 +26,7 @@ notesController.getNote = async (request, response) => {
 
 notesController.deleteNote = async (req, res) => {
     await Note.findByIdAndDelete(req.params.id)
-    res.json('Note Deleted');
+    res.json('Note deleted');
 }
 
 notesController.updateNote = async (request, response) => {
@@ -37,7 +37,7 @@ notesController.updateNote = async (request, response) => {
         duration,
         author
     });
-    response.json('Note Updated');
+    response.json('Note updated');
 }
 
 module.exports = notesController;
