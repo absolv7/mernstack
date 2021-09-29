@@ -17,24 +17,10 @@ const Notes = () => {
         
     }, [])
 
-    const writeTitle = (event) => {
+    const write = (event) => {
         setState({
             ...state,
-            title: event.target.value
-        });
-    }
-
-    const writeContent = (event) => {
-        setState({
-            ...state,
-            content: event.target.value
-        });
-    }
-
-    const writeAuthor = (event) => {
-        setState({
-            ...state,
-            author: event.target.value
+            [event.target.name]: event.target.value
         });
     }
 
@@ -60,13 +46,16 @@ const Notes = () => {
                         <form>
                             <div className="form-group">
                                 <input
-                                    className="form-control" type="text" placeholder="Title" onChange={writeTitle}/>
+                                    className="form-control" type="text" placeholder="Title" onChange={write}
+                                    name="title" />
                                 <br />
                                 <input
-                                    className="form-control" type="text" placeholder="Content" onChange={writeContent}/>
+                                    className="form-control" type="text" placeholder="Content" onChange={write}
+                                    name="content"/>
                                 <br />
                                 <input
-                                    className="form-control" type="text" placeholder="Author" onChange={writeAuthor}/>
+                                    className="form-control" type="text" placeholder="Author" onChange={write}
+                                    name="author" />
                             </div>
                             <br />
                             <button type="submit" className="btn btn-success" disabled>

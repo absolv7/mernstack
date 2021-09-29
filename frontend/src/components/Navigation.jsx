@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 export const StyledNav = styled.nav `
     
@@ -25,7 +26,7 @@ const Navigation = () => {
                 </button>
 
                 <div className="collapse navbar-collapse" id="navbarNav">
-                    <ul className="navbar-nav ml-auto">
+                    <ul className="navbar-nav">
                         <li className="nav-item">
                             <Link to="/notes" className="nav-link">
                                 Notes
@@ -34,6 +35,11 @@ const Navigation = () => {
                         <li className="nav-item">
                             <Link to="/users" className="nav-link">
                                 Users
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link to="/createnote" className="nav-link">
+                                Create Note
                             </Link>
                         </li>
                     </ul>
